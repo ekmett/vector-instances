@@ -1,5 +1,5 @@
 Name:                vector-instances
-Version:             0.0.1
+Version:             0.0.2
 Synopsis:            Orphan Instances for 'Data.Vector'
 Homepage:            http://patch-tag.com/r/ekmett/vector-instances
 License:             BSD3
@@ -15,4 +15,4 @@ Library
 
   Build-depends:
     base >= 4 && < 5,
-    vector >= 0.6.0.1 && < 7
+    vector >= 0.7.1 && < 8

@@ -41,12 +41,6 @@ instance MonadPlus Vector where
     mplus = (++)
     {-# INLINE mplus #-}
 
-instance Monoid (Vector a) where
-    mempty = Vector.empty
-    {-# INLINE mempty #-}
-    mappend = (++)
-    {-# INLINE mappend #-}
-
 instance Applicative Vector where
     pure = Vector.singleton
     {-# INLINE pure #-}
