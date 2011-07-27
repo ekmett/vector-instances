@@ -1,18 +1,23 @@
-Name:                vector-instances
-Version:             0.0.2
-Synopsis:            Orphan Instances for 'Data.Vector'
-Homepage:            http://patch-tag.com/r/ekmett/vector-instances
-License:             BSD3
-License-file:        LICENSE
-Author:              Edward Kmett
-Maintainer:          ekmett@gmail.com
-Category:            Data, Data Structures
-Build-type:          Simple
-Cabal-version:       >=1.2
+name:                vector-instances
+version:             0.0.2.1
+synopsis:            Orphan Instances for 'Data.Vector'
+homepage:            http://github.com/ekmett/vector-instances
+license:             BSD3
+license-file:        LICENSE
+author:              Edward Kmett
+maintainer:          ekmett@gmail.com
+category:            Data, Data Structures
+build-type:          Simple
+cabal-version:       >=1.6
 
-Library
-  Exposed-modules:     Data.Vector.Instances
+source-repository head
+  type: git
+  location: git://github.com/ekmett/vector-instances.git
 
-  Build-depends:
+library
+  exposed-modules: 
+    Data.Vector.Instances
+
+  build-depends:
     base >= 4 && < 5,
     vector >= 0.7.1 && < 8
