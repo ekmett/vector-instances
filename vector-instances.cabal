@@ -1,5 +1,5 @@
 name:                vector-instances
-version:             2.0
+version:             2.0.1
 synopsis:            Orphan Instances for 'Data.Vector'
 homepage:            http://github.com/ekmett/vector-instances
 license:             BSD3
@@ -28,4 +28,4 @@ library
     semigroups    >= 0.7.1 && < 0.8,
     comonad       >= 1.1.1 && < 1.2,
     pointed       >= 2.0 && < 2.1,
-    keys          >= 2.0 && < 2.1
+    keys          >= 2.1 && < 2.2
