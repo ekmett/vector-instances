@@ -20,8 +20,6 @@ import Data.Key
 import Data.Functor.Bind
 import Data.Functor.Extend
 import Data.Functor.Plus
-import Data.Foldable (Foldable(..))
-import Data.Traversable (Traversable(..))
 import Data.Pointed
 import Data.Monoid
 import qualified Data.Vector as Vector
@@ -30,10 +28,6 @@ import qualified Data.Vector.Fusion.Stream as Stream
 import Data.Vector.Fusion.Stream.Size
 import Data.Vector (Vector,(++),drop,length,imap,ifoldr, ifoldl, izipWith,(!?),(//), generate)
 import qualified Data.Vector as Vector
-
-instance Functor Vector where
-  fmap = Vector.map
-  {-# INLINE fmap #-}
 
 type instance Key Vector = Int
 
@@ -85,17 +79,6 @@ instance Pointed Vector where
   point = Vector.singleton
   {-# INLINE point #-}
 
-instance Applicative Vector where
-  pure = Vector.singleton
-  {-# INLINE pure #-}
-  fs <*> as =
-    G.unstream $ Stream.sized results (Exact n)
-    where
-      n = Vector.length fs * Vector.length as
-      results = Stream.concatMap body $ G.stream fs
-      body f = Stream.map f $ G.stream as
-  {-# INLINE (<*>) #-}
-
 instance Bind Vector where
   v >>- f = Vector.concatMap f v
   {-# INLINE (>>-) #-}
@@ -104,14 +87,6 @@ instance Semigroup (Vector a) where
   (<>) = (++)
   {-# INLINE (<>) #-}
   
-instance Monad Vector where
-  return = Vector.singleton
-  {-# INLINE return #-}
-  v >>= f = Vector.concatMap f v
-  {-# INLINE (>>=) #-}
-  fail _ = Vector.empty
-  {-# INLINE fail #-}
-
 instance MonadPlus Vector where
   mzero = Vector.empty
   {-# INLINE mzero #-}
@@ -125,27 +100,6 @@ instance Alt Vector where
 instance Plus Vector where
   zero = Vector.empty
   {-# INLINE zero #-}
-
-instance Alternative Vector where
-  (<|>) = (++)
-  {-# INLINE (<|>) #-}
-  empty = Vector.empty
-  {-# INLINE empty #-}
-
-instance Foldable Vector where
-  foldl = Vector.foldl
-  {-# INLINE foldl #-}
-  foldr = Vector.foldr
-  {-# INLINE foldr #-}
-  foldl1 = Vector.foldl1
-  {-# INLINE foldl1 #-}
-  foldr1 = Vector.foldr1
-  {-# INLINE foldr1 #-}
-
-instance Traversable Vector where
-  traverse f v
-     = Vector.fromListN (Vector.length v) <$> traverse f (Vector.toList v)
-  {-# INLINE traverse #-}
 
 instance TraversableWithKey Vector where
   traverseWithKey f v
