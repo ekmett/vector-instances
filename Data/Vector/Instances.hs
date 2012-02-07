@@ -87,12 +87,6 @@ instance Semigroup (Vector a) where
   (<>) = (++)
   {-# INLINE (<>) #-}
   
-instance MonadPlus Vector where
-  mzero = Vector.empty
-  {-# INLINE mzero #-}
-  mplus = (++)
-  {-# INLINE mplus #-}
-
 instance Alt Vector where
   (<!>) = (++)
   {-# INLINE (<!>) #-}
