@@ -1,5 +1,5 @@
 name:                vector-instances
-version:             2.0.4.2
+version:             2.1
 synopsis:            Orphan Instances for 'Data.Vector'
 homepage:            http://github.com/ekmett/vector-instances
 bug-reports:         http://github.com/ekmett/vector-instances/issues
@@ -18,9 +18,9 @@ source-repository head
 
 library
   other-extensions:
-    TypeFamilies 
+    TypeFamilies
 
-  exposed-modules: 
+  exposed-modules:
     Data.Vector.Instances
 
   build-depends:
@@ -30,4 +30,4 @@ library
     semigroups    >= 0.8.3.1 && < 0.9,
     comonad       >= 1.1.1.5 && < 1.2,
     pointed       >= 2.1.0.1 && < 2.2,
-    keys          >= 2.1.3.1 && < 2.2
+    keys          >= 2.2     && < 2.3
