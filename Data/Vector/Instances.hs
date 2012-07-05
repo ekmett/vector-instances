@@ -101,9 +101,9 @@ instance TraversableWithKey Vector where
   {-# INLINE traverseWithKey #-}
 
 instance Extend Vector where
-  duplicate v = generate (length v) (`drop` v)
-  {-# INLINE duplicate #-}
-  extend f v = generate (length v) (\n -> f (drop n v))
-  {-# INLINE extend #-}
+  duplicated v = generate (length v) (`drop` v)
+  {-# INLINE duplicated #-}
+  extended f v = generate (length v) (\n -> f (drop n v))
+  {-# INLINE extended #-}
 
 
