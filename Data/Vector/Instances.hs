@@ -1,4 +1,5 @@
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Data.Vector.Instances
@@ -28,11 +29,21 @@ import qualified Data.Vector.Fusion.Stream as Stream
 import Data.Vector.Fusion.Stream.Size
 import Data.Vector (Vector,(++),drop,length,imap,ifoldr, ifoldl, izipWith,(!?),(//), generate)
 import qualified Data.Vector as Vector
+import Control.Lens hiding (Indexable)
 
 type instance Key Vector = Int
 
+instance FunctorWithIndex Int Vector where
+  imap = Vector.imap
+
+instance FoldableWithIndex Int Vector where
+  ifoldMap f = Vector.ifoldr (\i -> mappend . f i) mempty
+
+instance TraversableWithIndex Int Vector where
+  itraverse = withIndex (indexed traverse)
+
 instance Keyed Vector where
-  mapWithKey = imap
+  mapWithKey = Vector.imap
   {-# INLINE mapWithKey #-}
 
 instance Zip Vector where
@@ -61,9 +72,9 @@ instance Adjustable Vector where
   {-# INLINE replace #-}
 
 instance FoldableWithKey Vector where
-  foldrWithKey = ifoldr
+  foldrWithKey = Vector.ifoldr
   {-# INLINE foldrWithKey #-}
-  foldlWithKey = ifoldl
+  foldlWithKey = Vector.ifoldl
   {-# INLINE foldlWithKey #-}
 
 instance Apply Vector where

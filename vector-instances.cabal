@@ -1,5 +1,5 @@
 name:                vector-instances
-version:             3.0
+version:             3.1
 synopsis:            Orphan Instances for 'Data.Vector'
 homepage:            http://github.com/ekmett/vector-instances
 bug-reports:         http://github.com/ekmett/vector-instances/issues
@@ -25,9 +25,10 @@ library
 
   build-depends:
     base          >= 4       && < 5,
-    vector        >= 0.9     && < 0.10,
+    vector        >= 0.10    && < 0.11,
     semigroupoids >= 3.0     && < 3.1,
     semigroups    >= 0.8.3.1 && < 0.9,
+    lens          >= 3.2     && < 3.4,
     comonad       >= 3.0     && < 3.1,
     pointed       >= 3.0     && < 3.1,
     keys          >= 3.0     && < 3.1
