@@ -29,18 +29,8 @@ import qualified Data.Vector.Fusion.Stream as Stream
 import Data.Vector.Fusion.Stream.Size
 import Data.Vector (Vector,(++),drop,length,imap,ifoldr, ifoldl, izipWith,(!?),(//), generate)
 import qualified Data.Vector as Vector
-import Control.Lens hiding (Indexable)
 
 type instance Key Vector = Int
-
-instance FunctorWithIndex Int Vector where
-  imap = Vector.imap
-
-instance FoldableWithIndex Int Vector where
-  ifoldMap f = Vector.ifoldr (\i -> mappend . f i) mempty
-
-instance TraversableWithIndex Int Vector where
-  itraverse = withIndex (indexed traverse)
 
 instance Keyed Vector where
   mapWithKey = Vector.imap
