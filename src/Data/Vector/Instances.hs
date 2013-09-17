@@ -29,6 +29,8 @@ import qualified Data.Vector.Fusion.Stream as Stream
 import Data.Vector.Fusion.Stream.Size
 import Data.Vector (Vector,(++),drop,length,imap,ifoldr, ifoldl, izipWith,(!?),(//), generate)
 import qualified Data.Vector as Vector
+import qualified Data.Vector.Unboxed as UVector
+import qualified Data.Vector.Storable as SVector
 
 type instance Key Vector = Int
 
@@ -108,3 +110,10 @@ instance Extend Vector where
   {-# INLINE extended #-}
 
 
+instance UVector.Unbox a => Semigroup (UVector.Vector a) where
+  (<>) = (UVector.++)
+  {-# INLINE (<>) #-}
+
+instance SVector.Storable a => Semigroup (SVector.Vector a) where
+  (<>) = (SVector.++)
+  {-# INLINE (<>) #-}
