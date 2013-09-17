@@ -29,8 +29,9 @@ import qualified Data.Vector.Fusion.Stream as Stream
 import Data.Vector.Fusion.Stream.Size
 import Data.Vector (Vector,(++),drop,length,imap,ifoldr, ifoldl, izipWith,(!?),(//), generate)
 import qualified Data.Vector as Vector
-import qualified Data.Vector.Unboxed as UVector
-import qualified Data.Vector.Storable as SVector
+import qualified Data.Vector.Unboxed as Unboxed
+import qualified Data.Vector.Storable as Storable
+import qualified Data.Vector.Primitive as Primitive
 
 type instance Key Vector = Int
 
@@ -89,7 +90,7 @@ instance Bind Vector where
 instance Semigroup (Vector a) where
   (<>) = (++)
   {-# INLINE (<>) #-}
-  
+
 instance Alt Vector where
   (<!>) = (++)
   {-# INLINE (<!>) #-}
@@ -109,11 +110,14 @@ instance Extend Vector where
   extended f v = generate (length v) (\n -> f (drop n v))
   {-# INLINE extended #-}
 
-
-instance UVector.Unbox a => Semigroup (UVector.Vector a) where
-  (<>) = (UVector.++)
+instance Unboxed.Unbox a => Semigroup (Unboxed.Vector a) where
+  (<>) = (Unboxed.++)
   {-# INLINE (<>) #-}
 
-instance SVector.Storable a => Semigroup (SVector.Vector a) where
-  (<>) = (SVector.++)
+instance Storable.Storable a => Semigroup (Storable.Vector a) where
+  (<>) = (Storable.++)
+  {-# INLINE (<>) #-}
+
+instance Primitive.Prim a => Semigroup (Primitive.Vector a) where
+  (<>) = (Primitive.++)
   {-# INLINE (<>) #-}
