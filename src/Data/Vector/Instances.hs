@@ -52,7 +52,7 @@ instance Indexable Vector where
   {-# INLINE index #-}
 
 instance Lookup Vector where
-  lookup = flip (!?) 
+  lookup = flip (!?)
   {-# INLINE lookup #-}
 
 instance Adjustable Vector where
