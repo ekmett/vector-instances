@@ -22,7 +22,7 @@ import Data.Functor.Bind
 import Data.Functor.Extend
 import Data.Functor.Plus
 import Data.Pointed
-import Data.Monoid
+import Data.Monoid (Monoid(..))
 import qualified Data.Vector as Vector
 import qualified Data.Vector.Generic as G
 import qualified Data.Vector.Fusion.Stream as Stream
