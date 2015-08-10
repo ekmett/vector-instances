@@ -1,3 +1,7 @@
+3.3.1
+-----
+* Support `vector` 0.11
+
 3.3.0.1
 -------
 * Support for GHC 7.10.1
