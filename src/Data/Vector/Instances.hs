@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 -----------------------------------------------------------------------------
@@ -25,8 +26,13 @@ import Data.Pointed
 import Data.Monoid (Monoid(..))
 import qualified Data.Vector as Vector
 import qualified Data.Vector.Generic as G
+#if MIN_VERSION_vector(0,11,0)
+import qualified Data.Vector.Fusion.Bundle as Stream
+import Data.Vector.Fusion.Bundle.Size
+#else
 import qualified Data.Vector.Fusion.Stream as Stream
 import Data.Vector.Fusion.Stream.Size
+#endif
 import Data.Vector (Vector,(++),drop,length,imap,ifoldr, ifoldl, izipWith,(!?),(//), generate)
 import qualified Data.Vector as Vector
 import qualified Data.Vector.Unboxed as Unboxed
