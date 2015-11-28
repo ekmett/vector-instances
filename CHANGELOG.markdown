@@ -1,3 +1,7 @@
+3.4
+-----
+* Added `Hashable` instances.
+
 3.3.1
 -----
 * Support `vector` 0.11
