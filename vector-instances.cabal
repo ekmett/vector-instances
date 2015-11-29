@@ -1,5 +1,5 @@
 name:                vector-instances
-version:             3.3.1
+version:             3.4
 synopsis:            Orphan Instances for 'Data.Vector'
 homepage:            http://github.com/ekmett/vector-instances
 bug-reports:         http://github.com/ekmett/vector-instances/issues
@@ -10,6 +10,14 @@ maintainer:          ekmett@gmail.com
 category:            Data, Data Structures
 build-type:          Simple
 cabal-version:       >=1.6
+tested-with:
+  GHC==7.0.4,
+  GHC==7.2.2,
+  GHC==7.4.2,
+  GHC==7.6.3,
+  GHC==7.8.4,
+  GHC==7.10.2,
+  GHC==7.10.3
 extra-source-files:
   .travis.yml
   .ghci
@@ -21,6 +29,12 @@ extra-source-files:
 source-repository head
   type: git
   location: git://github.com/ekmett/vector-instances.git
+
+flag hashable
+  description:
+    You can disable the use of the `hashable` package using `-f-hashable`.
+  default: True
+  manual: True
 
 library
   other-extensions: TypeFamilies
@@ -34,3 +48,6 @@ library
     comonad       >= 3,
     pointed       >= 3,
     keys          >= 3
+
+  if flag(hashable)
+    build-depends:  hashable >= 1.1.1.0
