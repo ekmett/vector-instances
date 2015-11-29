@@ -30,6 +30,12 @@ source-repository head
   type: git
   location: git://github.com/ekmett/vector-instances.git
 
+flag hashable
+  description:
+    You can disable the use of the `hashable` package using `-f-hashable`.
+  default: True
+  manual: True
+
 library
   other-extensions: TypeFamilies
   exposed-modules: Data.Vector.Instances
@@ -39,7 +45,9 @@ library
     vector        >= 0.9     && < 0.12,
     semigroupoids >= 3,
     semigroups    >= 0.8.3.1,
-    hashable      >= 1.1.1.0,
     comonad       >= 3,
     pointed       >= 3,
     keys          >= 3
+
+  if flag(hashable)
+    build-depends:  hashable >= 1.1.1.0

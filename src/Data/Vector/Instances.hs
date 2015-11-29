@@ -18,7 +18,9 @@ import Prelude hiding ((++), drop, length)
 import Control.Applicative
 import Control.Monad
 import Data.Semigroup
+#ifdef MIN_VERSION_hashable
 import Data.Hashable (Hashable(..))
+#endif
 import Data.Key
 import Data.Functor.Bind
 import Data.Functor.Extend
@@ -129,6 +131,7 @@ instance Primitive.Prim a => Semigroup (Primitive.Vector a) where
   (<>) = (Primitive.++)
   {-# INLINE (<>) #-}
 
+#ifdef MIN_VERSION_hashable
 instance (Hashable a) => Hashable (Vector a) where
   hashWithSalt salt = hashWithSalt salt . Vector.toList
   {-# INLINE hashWithSalt #-}
@@ -144,3 +147,4 @@ instance (Storable.Storable a, Hashable a) => Hashable (Storable.Vector a) where
 instance (Primitive.Prim a, Hashable a) => Hashable (Primitive.Vector a) where
   hashWithSalt salt = hashWithSalt salt . Primitive.toList
   {-# INLINE hashWithSalt #-}
+#endif
