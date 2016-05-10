@@ -57,7 +57,7 @@ instance ZipWithKey Vector where
   {-# INLINE zipWithKey #-}
 
 instance Indexable Vector where
-  index = (!)
+  index = (Vector.!)
   {-# INLINE index #-}
 
 instance Lookup Vector where
