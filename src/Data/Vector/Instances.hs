@@ -96,10 +96,6 @@ instance Bind Vector where
   v >>- f = Vector.concatMap f v
   {-# INLINE (>>-) #-}
 
-instance Semigroup (Vector a) where
-  (<>) = (++)
-  {-# INLINE (<>) #-}
-
 instance Alt Vector where
   (<!>) = (++)
   {-# INLINE (<!>) #-}
@@ -119,6 +115,11 @@ instance Extend Vector where
   extended f v = generate (length v) (\n -> f (drop n v))
   {-# INLINE extended #-}
 
+#if !(MIN_VERSION_vector(0,12,0))
+instance Semigroup (Vector a) where
+  (<>) = (++)
+  {-# INLINE (<>) #-}
+
 instance Unboxed.Unbox a => Semigroup (Unboxed.Vector a) where
   (<>) = (Unboxed.++)
   {-# INLINE (<>) #-}
@@ -130,6 +131,7 @@ instance Storable.Storable a => Semigroup (Storable.Vector a) where
 instance Primitive.Prim a => Semigroup (Primitive.Vector a) where
   (<>) = (Primitive.++)
   {-# INLINE (<>) #-}
+#endif
 
 #ifdef MIN_VERSION_hashable
 instance (Hashable a) => Hashable (Vector a) where

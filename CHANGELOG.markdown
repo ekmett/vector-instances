@@ -1,5 +1,6 @@
 3.4
 -----
+* Support `vector-0.12`
 * Added `Hashable` instances.
 
 3.3.1
