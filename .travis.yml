@@ -91,6 +91,14 @@ script:
 # If there are no other `.tar.gz` files in `dist`, this can be even simpler:
 # `cabal install --force-reinstalls dist/*-*.tar.gz`
  - SRC_TGZ=$(cabal info . | awk '{print $2;exit}').tar.gz &&
-   (cd dist && cabal install --force-reinstalls "$SRC_TGZ")
+   (cd dist && cabal install $CABALOPTS --force-reinstalls "$SRC_TGZ")
+
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#haskell-lens"
+    skip_join: true
+    template:
+      - "\x0313pointed\x03/\x0306%{branch}\x03 \x0314%{commit}\x03 %{build_url} %{message}"
 
 # EOF
