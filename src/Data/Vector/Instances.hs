@@ -20,8 +20,6 @@ import Control.Monad
 import Data.Semigroup
 #ifdef MIN_VERSION_hashable
 import Data.Hashable (Hashable(..))
-#endif
-#if MIN_VERSION_hashable(1,2,5)
 import Data.Hashable.Lifted (Hashable1(..))
 #endif
 import Data.Key
@@ -152,9 +150,7 @@ instance (Storable.Storable a, Hashable a) => Hashable (Storable.Vector a) where
 instance (Primitive.Prim a, Hashable a) => Hashable (Primitive.Vector a) where
   hashWithSalt salt = hashWithSalt salt . Primitive.toList
   {-# INLINE hashWithSalt #-}
-#endif
 
-#if MIN_VERSION_hashable(1,2,5)
 instance Hashable1 Vector where
   liftHashWithSalt itemHashWithSalt salt = liftHashWithSalt itemHashWithSalt salt . Vector.toList
   {-# INLINE liftHashWithSalt #-}
