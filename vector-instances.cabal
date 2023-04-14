@@ -23,7 +23,6 @@ tested-with:
   GHC==9.4.4,
   GHC==9.6.1
 extra-source-files:
-  .ghci
   .vim.custom
   .gitignore
   CHANGELOG.markdown
