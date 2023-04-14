@@ -1,3 +1,9 @@
+next [????.??.??]
+-----------------
+* Add a `Hashable1 Vector` instance.
+* Require `vector-0.12`+ and `hashable-1.2.5.0`+.
+* Drop support for GHC 7.10 and earlier.
+
 3.4
 -----
 * Support `vector-0.12`
