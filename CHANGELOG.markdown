@@ -1,3 +1,7 @@
+next [????.??.??]
+-----------------
+* Remove unused dependency on `semigroups`.
+
 3.4.1 [2023.04.14]
 ------------------
 * Add a `Hashable1 Vector` instance.
