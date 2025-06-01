@@ -1,3 +1,8 @@
+next [????.??.??]
+-----------------
+* Add a `Hashable` instance for strict `Vector`s (when building with
+  `vector-0.13.2.0` or later).
+
 3.4.2 [2023.04.17]
 ------------------
 * Remove unused dependency on `semigroups`.
