@@ -39,6 +39,9 @@ import Data.Vector.Fusion.Stream.Size
 #endif
 import Data.Vector (Vector,(++),drop,length,imap,ifoldr, ifoldl, izipWith,(!?),(//), generate)
 import qualified Data.Vector as Vector
+#if MIN_VERSION_vector(0,13,2)
+import qualified Data.Vector.Strict as Vector.Strict
+#endif
 import qualified Data.Vector.Unboxed as Unboxed
 import qualified Data.Vector.Storable as Storable
 import qualified Data.Vector.Primitive as Primitive
@@ -138,6 +141,12 @@ instance Primitive.Prim a => Semigroup (Primitive.Vector a) where
 instance (Hashable a) => Hashable (Vector a) where
   hashWithSalt salt = hashWithSalt salt . Vector.toList
   {-# INLINE hashWithSalt #-}
+
+#if MIN_VERSION_vector(0,13,2)
+instance (Hashable a) => Hashable (Vector.Strict.Vector a) where
+  hashWithSalt salt = hashWithSalt salt . Vector.Strict.toList
+  {-# INLINE hashWithSalt #-}
+#endif
 
 instance (Unboxed.Unbox a, Hashable a) => Hashable (Unboxed.Vector a) where
   hashWithSalt salt = hashWithSalt salt . Unboxed.toList
