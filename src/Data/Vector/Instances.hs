@@ -146,6 +146,10 @@ instance (Hashable a) => Hashable (Vector a) where
 instance (Hashable a) => Hashable (Vector.Strict.Vector a) where
   hashWithSalt salt = hashWithSalt salt . Vector.Strict.toList
   {-# INLINE hashWithSalt #-}
+
+instance Hashable1 Vector.Strict.Vector where
+  liftHashWithSalt itemHashWithSalt salt = liftHashWithSalt itemHashWithSalt salt . Vector.Strict.toList
+  {-# INLINE liftHashWithSalt #-}
 #endif
 
 instance (Unboxed.Unbox a, Hashable a) => Hashable (Unboxed.Vector a) where
