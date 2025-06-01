@@ -1,5 +1,5 @@
-next [????.??.??]
------------------
+3.4.3 [2025.06.01]
+------------------
 * Add `Hashable` and `Hashable1` instances for strict `Vector`s (when building
   with `vector-0.13.2.0` or later).
 

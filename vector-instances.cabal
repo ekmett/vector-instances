@@ -1,5 +1,5 @@
 name:                vector-instances
-version:             3.4.2
+version:             3.4.3
 synopsis:            Orphan Instances for 'Data.Vector'
 description:         Orphan Instances for 'Data.Vector'.
 homepage:            http://github.com/ekmett/vector-instances
